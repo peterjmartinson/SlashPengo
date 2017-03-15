@@ -26,7 +26,10 @@ var PORT = process.env.PORT || 3000;
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/',function(req,res){
-  res.send('In root directory');
+  getQuote.atRandom(function(err, result) {
+    if (err) console.error(err);
+    res.send("Quote #" + req.params.quote_id + " is:<br>" + result);
+  });
 });
 
 // user enters 'path/48' to get quote #48
